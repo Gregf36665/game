@@ -1,0 +1,43 @@
+/**
+ * Auto Generated Java Class.
+ */
+public class Enemy {
+  private int HP;
+  private int type; // use to define on map
+  private int attack; // how hard they hit
+  
+  public Enemy(int HP,int type, int attack){
+    this.HP = HP;
+    this.type = type;
+    this.attack = attack;
+  }
+  
+  public int getHP(){
+    return this.HP;
+  }
+  
+  public int getType(){
+    return this.type;
+  }
+  
+  public int getAttack(){
+    return this.attack;
+  }
+  
+  public void setHP(int HP){
+    this.HP = HP;
+  }
+  
+  public void setType(int type){
+      this.type = type;
+    }
+  
+    public void setAttack(int attack){
+      this.attack = attack;
+    }
+    
+    public static void main(String[] args){
+      Enemy troll = new Enemy(10,1,1);
+    }
+}
+

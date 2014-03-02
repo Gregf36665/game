@@ -1,0 +1,12 @@
+public class main{
+  public static void main(String[] args){
+        for(int i=0;i<size;i++){
+      if(i%10==9){
+        System.out.println(map[i/10][i%10]+"\n");
+      }
+      else
+        System.out.print(map[i/10][i%10] + " ");
+    }
+    
+  }
+}

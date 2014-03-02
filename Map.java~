@@ -1,0 +1,113 @@
+import java.util.Arrays;
+
+// Note for the coordiantes (0,0) is the first array (x,y) note the arrays count y as down and x as 
+//across but the index is [y][x] 
+
+public class Map{
+  public static int x = 10;
+  public static int y = 10;
+  public static int size = x*y;
+  public static int[][] map = new int[x][y];
+  
+  public static void main(String[] args){
+    
+    
+    // fill with zeros
+    for(int i=0; i<size;i++){
+      map[i/10][i%10] = 0;
+    }
+    
+    // build rooms in the form (xpos,ypos,xsize,ysize)
+    room(0,0,1,1);
+    room(2,1,2,2);
+    room(7,0,3,2);
+    room(4,4,2,2);
+    room(0,7,3,3);
+    room(7,8,3,2);
+    room(7,3,3,2);
+    
+    // build the hall vertical or horizontal(x1,y1,length)
+    vHall(0,1,4);
+    vHall(1,4,3);
+    vHall(5,2,2);
+    vHall(8,2,1);
+    vHall(8,5,3);
+    vHall(3,6,2);
+    vHall(5,8,2);
+
+    
+    hHall(3,0,4);
+    hHall(1,1,1);
+    hHall(4,2,1);
+    hHall(2,4,2);
+    hHall(4,6,1);
+    hHall(3,9,2);
+    hHall(6,8,1);
+    hHall(6,4,1);
+    
+    // display the map
+    for(int i=0;i<size;i++){
+      if(i%10==9){
+        System.out.println(map[i/10][i%10]+"\n");
+      }
+      else
+        System.out.print(map[i/10][i%10] + " ");
+    }
+    
+  }
+  
+  
+  
+  public static void room(int xPosInitial, int yPosInitial, int sizeX,int sizeY){
+    try{
+      map[xPosInitial+sizeX-1] = map[xPosInitial+sizeX-1]; // check within x dimentions
+      
+      try{
+        map[yPosInitial+sizeY-1] = map[yPosInitial+sizeY-1]; // check within y dimentions
+        // build the room
+        for(int xPos=xPosInitial; xPos<xPosInitial+sizeX;xPos++){
+          for(int yPos=yPosInitial; yPos<yPosInitial+sizeY;yPos++){
+            map[yPos][xPos] = 2;
+          }
+        }
+      }
+      catch (ArrayIndexOutOfBoundsException e){
+        System.err.println("invalid y dimentions at (" + xPosInitial +"," + yPosInitial +")");
+      }
+    }
+    catch (ArrayIndexOutOfBoundsException e){
+      System.err.println("invalid x dimentions at (" + xPosInitial +"," + yPosInitial +")");
+    }
+    
+
+    
+  }
+
+ 
+  
+  public static void hHall(int xPosInitial, int yPosInitial, int length){
+    try{
+      map[xPosInitial+length-1] = map[xPosInitial+length-1]; // test if hall will go out of range 
+      for(int xPos=xPosInitial; xPos<xPosInitial+length;xPos++){
+        map[yPosInitial][xPos] = 1;
+    }
+    }
+
+    catch (ArrayIndexOutOfBoundsException e){
+      System.err.println("length too long horizontally at (" + xPosInitial +"," + yPosInitial +")");
+    }
+  }
+  
+  public static void vHall(int xPosInitial, int yPosInitial, int length){
+    try{
+      map[yPosInitial+length-1] =  map[yPosInitial+length-1]; // test if hall will go out of range 
+      for(int yPos=yPosInitial; yPos<yPosInitial+length;yPos++){
+        map[yPos][xPosInitial] = 1;
+    }
+    }
+    catch (ArrayIndexOutOfBoundsException e){
+      System.err.println("length too long vertically at (" + xPosInitial +"," + yPosInitial +")");
+  }
+  }
+  public int[][] builtMap = map;
+}
