@@ -3,6 +3,7 @@ public class Player{
   private int yPos;
   private int HP = 10;
   private int attack;
+  private int defense;
   public int xSize = Map.x-1;
   public int ySize = Map.y-1;
   private int level;
@@ -16,11 +17,13 @@ public class Player{
     this.attack = 5;
     this.level = 1;
     this.XP = 0;
+    this.defense = 1;
   }
   
  private void incLevel(){
 	 this.level += 1;
 	 this.attack += 1;
+	 this.defense =+ 1;
 	 this.healthMax += 5;
 	 if(this.HP<this.healthMax){
 	 this.HP += 10;
@@ -31,6 +34,7 @@ public class Player{
  public void stats(){
 	 System.out.println("Health: " + this.HP +"/" + this.healthMax);
 	 System.out.println("Attack: " + this.attack);
+	 System.out.println("Defense" + this.defense);
 	 System.out.println("Level: " + this.level);
 	 System.out.println("XP:" + XP + "/" + (levelStep*this.level)+"\n");
  }
@@ -65,6 +69,10 @@ public class Player{
   
   public int getAttack(){
     return this.attack;
+  }
+  
+  public int getDefense(){
+	  return this.defense;
   }
   
   public void hurt(int HP){

@@ -10,16 +10,18 @@ public class Enemy {
   public int HP;
   private int type; // use to define on map
   public int attack; // how hard they hit
+  private int defense; // reduction of attack
   private int xPos;
   private int yPos;
+
   public String name;
  
-  public Enemy(int HP,int type, int attack){
+  public Enemy(int HP,int type, int attack, int defense){
     this.HP = HP;
     this.type = type;
     this.attack = attack;
     this.name = NPCName(this.type);
-    
+    this.defense = defense;   
   }
   
  // ENEMY NAMES
@@ -64,6 +66,10 @@ public class Enemy {
   
   public int getAttack(){
     return this.attack;
+  }
+  
+  public int getDefense(){
+	  return this.defense;
   }
   
   public void setHP(int HP){
